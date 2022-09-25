@@ -3,29 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    </head>
+    <body>
     <title>São Judas Lanches</title>
-    <h1>São Judas Lanches</h1>
+    <h1 class="navbar-nav mr-auto" >São Judas Lanches</h1>
     <hr>
     <h4>Lista de Mesas</h4>
-    <ul id="games"></ul>
+    <ul id="games"><br></ul>
+    <br>
     <hr>
     <h4>Novo pedido!</h4>
-    <input type="number" name="id" id="id" placeholder="Insira a mesa!"><br>
-    <input type="text" name="title" id="title" placeholder="Insira o consumo!"><br>
+    <br>
+    <td>
+        <div>
+            <input type="number" name="id" id="id" placeholder="Insira a mesa!"><br>
+        </div>
+    </td>
+    <td>
+        <div>
+            <input type="text" name="title" id="title" placeholder="Insira o consumo!"><br>
+        </div>
+    </td>
+
    <input type="hidden" name="year" id="year" placeholder="Ano" readonly><br>
     <input type="hidden" name="price" id="price" placeholder="Insira"><br>
-    <button type="button" onclick="createGame()">Criar pedido!</button>
+    <button type="button" onclick="createGame()" class="btn btn-success">Criar pedido!</button><br>
+    <br>
 
     <h4>Editar pedido</h4>
     <input type="number" name="idEdit" id="idEdit" placeholder="Mesa" ><br>
     <input type="text" name="titleEdit" id="titleEdit" placeholder="Consumo"><br>
     <input type="hidden" name="yearEdit" id="yearEdit" placeholder="Ano"><br>
     <input type="hidden" name="priceEdit" id="priceEdit" placeholder="Insira a mesa"><br>
-    <button type="button" onclick="updateGame()">Editar pedido!</button>
-
+    <button type="button" onclick="updateGame()" class="btn btn-warning">Editar pedido!</button>
 </head>
 <body>
-    
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -110,7 +125,7 @@
             item.setAttribute("data-year",game.year);
             item.setAttribute("data-price",game.price);
 
-            item.innerHTML = game.id + " - " + game.title + " - " + game.price;
+            item.innerHTML = game.id + "   <->  " + game.title + "     <->   " + game.price;
 
             var deleteBtn = document.createElement("button");
             deleteBtn.innerHTML = "Deletar";
