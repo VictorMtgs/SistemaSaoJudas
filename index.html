@@ -30,7 +30,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     
-    function createGame(){
+    function createGame(listItem){
         var titleInput = document.getElementById("title");
         var yearInput = document.getElementById("year");
         var priceInput = document.getElementById("price");
@@ -72,7 +72,7 @@
         document.getElementById("priceEdit").value = price;
     }
 
-    function updateGame(){
+    function updateGame(listItem){
 
         var idInput = document.getElementById("idEdit")
         var titleInput = document.getElementById("titleEdit");
