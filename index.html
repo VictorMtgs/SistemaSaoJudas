@@ -12,8 +12,8 @@
     <h4>Novo pedido!</h4>
     <input type="number" name="id" id="id" placeholder="Insira a mesa!"><br>
     <input type="text" name="title" id="title" placeholder="Insira o consumo!"><br>
-   <input type="hidden" name="year" id="year" placeholder="Ano" readonly><br>
-    <input type="hidden" name="price" id="price" placeholder="Insira"><br>
+   <input type="text" name="year" id="year" placeholder="Ano" readonly><br>
+    <input type="text" name="price" id="price" placeholder="Insira"><br>
     <button type="button" onclick="createGame()">Criar pedido!</button>
 
     <h4>Editar pedido</h4>
@@ -30,7 +30,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     
-    function createGame(listItem){
+    function createGame(){
         var titleInput = document.getElementById("title");
         var yearInput = document.getElementById("year");
         var priceInput = document.getElementById("price");
@@ -127,7 +127,6 @@
 
             item.appendChild(deleteBtn);
             item.appendChild(editBtn);
-
             list.appendChild(item);
         });
 
