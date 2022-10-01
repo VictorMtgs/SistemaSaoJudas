@@ -147,7 +147,7 @@ let axiosConfig = {
     }
 
 
-    axios.get("https://api-lanchonete.herokuapp.com/games").then(response => {
+    axios.get("https://api-lanchonete.herokuapp.com/games",axiosConfig).then(response => {
         var games = response.data;
         var list = document.getElementById("games");
 
