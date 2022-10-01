@@ -9,7 +9,18 @@
     <body>
     <title>São Judas Lanches</title>
     <h1 class="navbar-nav mr-auto" >São Judas Lanches</h1>
-    <hr>
+    <br>
+    <br>
+
+    <h4>Login</h4>
+    <br>
+        <input type="text" name ="email" id="email" placeholder="insira o seu Email!"><br>
+        <input type="text" name="password" id="password" placeholder="**********"><br>
+        <br>
+        <button type="button" onclick="login()" class="btn btn-success">Entrar!</button>
+    <br>
+    <br>
+
     <h4>Lista de Mesas</h4>
     <ul id="games"><br></ul>
     <br>
@@ -44,7 +55,30 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
+let axiosConfig = {
+        headers: {
+            Authorization: "Bearer" + localStorage.getItem("token")
+        }
+    }
+
     
+    function login(){
+        let emailField = document.getElementById("email");
+        let passwordField = document.getElementById("password");
+        let  email = emailField.value;
+        let password = passwordField.value;
+
+        axios.post("https://api-lanchonete.herokuapp.com/auth",{email, password}).then( res => {
+            let token = res.data.token;
+            localStorage.setItem("token",token);
+            axiosConfig.headers.Authorization = "Bearer" + localStorage.getItem("token");
+            alert("Você está online!! :)");
+        }).catch(err => {
+            alert("Email ou senha incorreto!! :(");
+        })
+    }
+
     function createGame(listItem){
         var titleInput = document.getElementById("title");
         var yearInput = document.getElementById("year");
@@ -58,7 +92,7 @@
             id: idInput.value
         }
 
-        axios.post("https://api-lanchonete.herokuapp.com/game",game).then(response => {
+        axios.post("https://api-lanchonete.herokuapp.com/game",game,axiosConfig).then(response => {
             if(response.status == 200){
                 alert("Pedido cadastrado!")
             }
@@ -69,7 +103,7 @@
 
     function deleteGame(listItem){
         var id = listItem.getAttribute("data-id");
-        axios.delete("https://api-lanchonete.herokuapp.com/game/"+id).then(response => {
+        axios.delete("https://api-lanchonete.herokuapp.com/game/"+id,axiosConfig).then(response => {
             alert("Peido deletado!")
         }).catch(err => {
             console.log(err);
@@ -102,7 +136,7 @@
 
         var id = idInput.value;
 
-        axios.put("https://api-lanchonete.herokuapp.com/game/"+id,game).then(response => {
+        axios.put("https://api-lanchonete.herokuapp.com/game/"+id,game,axiosConfig).then(response => {
             if(response.status == 200){
                 alert("Pedido atualizado!!");
             }
